@@ -1,0 +1,61 @@
+.container
+  .row
+    .content.col-md-12
+      h2= resource.route
+      p= Kanpachi::Markdown.to_html(resource.description)
+      .table-responsive
+        table.table.table-hover
+          thead
+            tr
+              td colspan="2"
+                strong Parameters
+          tbody
+            - [[resource.params.input_filters.required_inputs, true], [resource.params.input_filters.optional_inputs, false]].each do |input, required|
+              - input.each do |k, v|
+                tr
+                  td
+                    strong= k.to_s.downcase
+                    br
+                    span= /Mutations::(.+)Filter/.match(v.class.to_s)[1].downcase
+                    br
+                    em= required ? 'required' : 'optional'
+                  td
+                    p= Kanpachi::Markdown.to_html(v.options[:doc]) if v.options[:doc]
+                    - if v.options[:example]
+                      strong
+                        | Example:
+                      |  #{v.options[:example]}
+
+      - resource.responses.all.each do |response|
+        .table-responsive
+          table.table.table-hover
+            thead
+              tr colspan="2"
+                strong Response (#{response.name.to_s})
+              tr colspan="2"
+                Status: #{response.status}
+                br
+
+            tbody
+              - response.representation.properties.each do |k, v|
+                tr
+                  td
+                    strong= k.to_s.downcase
+                    br
+                    - if v[:hash]
+                      span object
+                    - elsif v[:collection]
+                      span array
+                    - else
+                      span= v[:type].to_s.downcase
+                  td
+                    p= Kanpachi::Markdown.to_html(v[:doc]) if v[:doc]
+                    - if v[:example]
+                      strong
+                        | Example:
+                      |  #{v[:example]}
+
+              tr
+                td colspan="2"
+                  strong Example
+                  pre= JSON.pretty_generate(response.representation.example)

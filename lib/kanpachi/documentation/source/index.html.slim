@@ -1,0 +1,25 @@
+.jumbotron
+  .container
+    h1= api.title
+    p= Kanpachi::Markdown.to_html(api.description)
+.container
+  .row
+    .content.col-md-12
+      - api.sections.all.each do |section|
+        a name=section.name.downcase
+        h3= section.name
+        p= Kanpachi::Markdown.to_html(section.description)
+        .table-responsive
+          table.table.table-hover
+            thead
+              tr
+                th Resource
+                th Description
+            tbody
+              - section.routes.each do |route|
+                - resource = api.resources.find(*route)
+                tr
+                  td
+                    a href="#{resource.http_verb}#{resource.url}" #{resource.route}
+                  td= resource.description
+      hr

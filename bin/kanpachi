@@ -1,0 +1,17 @@
+#!/usr/bin/env ruby
+require 'rubygems'
+require_relative '../lib/kanpachi/cli'
+
+# Hack to populate options['reload_paths'] with api path
+if ARGV[0] == 'server'
+  reload_paths = false
+  ARGV.each_with_index do |arg, i|
+    if arg.start_with?('--reload_paths=')
+      ARGV[i] = "#{ARGV[i]},api/[^\.](.*)\.rb$"
+      reload_paths = true
+    end
+  end
+  ARGV << "--reload_paths=api/[^\.](.*)\.rb$" unless reload_paths
+end
+
+Kanpachi::CLI.start(ARGV)
