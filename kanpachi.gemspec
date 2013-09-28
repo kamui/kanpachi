@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["kamuigt@gmail.com"]
   spec.description   = %q{Web API DSL}
   spec.summary       = %q{DSL for describing Web APIs}
-  spec.homepage      = "htts://github.com/kamui/kanpachi"
+  spec.homepage      = "https://github.com/kamui/kanpachi"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)
