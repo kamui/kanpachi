@@ -21,5 +21,5 @@
                 tr
                   td
                     a href="#{resource.http_verb}#{resource.url}" #{resource.route}
-                  td= resource.description
+                  td= Kanpachi::Markdown.to_html(resource.description)
       hr
