@@ -13,6 +13,8 @@ Response representations are defined as [Roar](https://github.com/apotonick/roar
 
 To check out an example API project, checkout [kanpachi-example](https://github.com/kamui/kanpachi-example).
 
+This project was inspired by [@mattetti](https://github.com/mattetti/)'s [Weasel-Diesel](https://github.com/mattetti/Weasel-Diesel) project, of which I am also a contributor. I created Kanpachi as a way of experimenting and leaning how to create a DSL in ruby.
+
 ## Example
 
 Below is an example of one of Twitter's API endpoints partially described in Kanpachi.
