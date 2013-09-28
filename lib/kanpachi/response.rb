@@ -34,7 +34,7 @@ module Kanpachi
                 example[key] = value[:example] || 1
               elsif value[:type] == String
                 example[key] = value[:example] || 'String'
-              elsif value[:type] == Boolean
+              elsif !!value[:type] == value[:type]
                 example[key] = value[:example] || true
               elsif value[:type] == DateTime
                 example[key] = value[:example] || "2013-01-01T19:06:43Z"
