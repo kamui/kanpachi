@@ -20,7 +20,7 @@ TEXT
         end
 
         optional do
-          boolean :newsletter, doc: 'Do you want our weekly newsletter?'
+          boolean :newsletter, doc: 'Do you want our weekly newsletter?', default: false
         end
       end
 
