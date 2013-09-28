@@ -33,6 +33,14 @@ module Kanpachi
       @list[api.name] = api
     end
 
+    # Delete a resource to the list
+    #
+    # @param [String] The name of the API to delete.
+    # @api public
+    def delete(name)
+      @list.delete(name)
+    end
+
     # Returns a API based on its name
     #
     # @param [String] name The name of the API you are looking for.

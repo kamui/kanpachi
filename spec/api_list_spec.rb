@@ -34,6 +34,12 @@ describe Kanpachi::APIList do
       subject.all.must_include myapp_api
     end
 
+    it 'deletes a API' do
+      subject.add(myapp_api)
+      subject.delete(myapp_api.name)
+      subject.all.wont_include myapp_api
+    end
+
     it 'finds a API by name' do
       Kanpachi::APIList.add(myapp_api)
       subject.find('MyApp').must_equal myapp_api
