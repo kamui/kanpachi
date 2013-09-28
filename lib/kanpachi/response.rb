@@ -1,6 +1,7 @@
 require 'roar/representer'
 require 'roar/representer/feature/hypermedia'
 require 'representable/json/collection'
+require 'representable/json/hash'
 
 module Kanpachi
   class Response
