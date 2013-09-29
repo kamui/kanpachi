@@ -39,7 +39,7 @@ set :api, Kanpachi::APIList.all.first
 #  :which_fake_page => "Rendering a fake page with a local variable" }
 
 api.resources.all.each do |resource|
-  proxy "/#{resource.http_verb}#{resource.url}", "/resource.html", locals: { resource: resource }, ignore: true
+  proxy "/#{resource.http_verb}#{resource.url}", 'resource.html', locals: { resource: resource }, ignore: true
 end
 
 ###

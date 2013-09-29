@@ -1,14 +1,14 @@
 .container
   .row
     .content.col-md-12
-      h2= resource.route
+      h1= resource.route
       p= Kanpachi::Markdown.to_html(resource.description)
       .table-responsive
         table.table.table-hover
           thead
             tr
               td colspan="2"
-                strong Parameters
+                h4 Parameters
           tbody
             - [[resource.params.input_filters.required_inputs, true], [resource.params.input_filters.optional_inputs, false]].each do |input, required|
               - input.each do |k, v|
@@ -31,7 +31,7 @@
           table.table.table-hover
             thead
               tr colspan="2"
-                strong Response (#{response.name.to_s})
+                h4 Response (#{Inflecto.humanize(response.name.to_s)})
               tr colspan="2"
                 Status: #{response.status}
                 br

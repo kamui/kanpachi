@@ -1,0 +1,39 @@
+.container
+  .row
+    .content.col-md-12
+      h1 Error Codes & Responses
+      - api.errors.all.each do |error|
+        h2= Inflecto.humanize(error.name)
+        p= Kanpachi::Markdown.to_html(error.description)
+        .table-responsive
+          table.table.table-hover
+            thead
+              tr colspan="2"
+                strong Response (#{Inflecto.humanize(error.response.name)})
+              tr colspan="2"
+                Status: #{error.response.status}
+                br
+
+            tbody
+              - error.response.representation.properties.each do |k, v|
+                tr
+                  td
+                    strong= k.to_s.downcase
+                    br
+                    - if v[:hash]
+                      span object
+                    - elsif v[:collection]
+                      span array
+                    - else
+                      span= v[:type].to_s.downcase
+                  td
+                    p= Kanpachi::Markdown.to_html(v[:doc]) if v[:doc]
+                    - if v[:example]
+                      strong
+                        | Example:
+                      |  #{v[:example]}
+
+              tr
+                td colspan="2"
+                  strong Example
+                  pre= JSON.pretty_generate(error.response.representation.example)
