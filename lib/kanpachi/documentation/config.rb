@@ -52,6 +52,9 @@ end
 # Reload the browser automatically whenever files change
 activate :livereload
 
+# Pretty URLs
+activate :directory_indexes
+
 # Methods defined in the helpers block are available in templates
 # helpers do
 #   def some_helper
