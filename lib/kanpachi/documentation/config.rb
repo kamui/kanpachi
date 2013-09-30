@@ -68,8 +68,6 @@ set :js_dir, 'javascripts'
 
 set :images_dir, 'images'
 
-set :relative_links, true
-
 # Build-specific configuration
 configure :build do
   # For example, change the Compass output style for deployment
@@ -82,7 +80,7 @@ configure :build do
   activate :asset_hash
 
   # Use relative URLs
-  activate :relative_assets
+  # activate :relative_assets
 
   # Or use a different image path
   # set :http_prefix, "/Content/images/"
