@@ -38,37 +38,145 @@
           <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></span>
         </div>
 
-        <h3>
-<a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>Welcome to GitHub Pages.</h3>
+        <h1>
+<a name="kanpachi" class="anchor" href="#kanpachi"><span class="octicon octicon-link"></span></a>Kanpachi</h1>
 
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
+<p><a href="http://travis-ci.org/kamui/kanpachi"><img src="https://secure.travis-ci.org/kamui/kanpachi.png?branch=master" alt="CI Build Status"></a></p>
 
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
+<p>Kanpachi is a ruby gem that provides a DSL to describe your web API, generate documentation, and will even eventually
+help you implement it.</p>
+
+<p>Resource input parameters are defiend with the <a href="https://github.com/cypriss/mutations">mutations</a> gem. You can refer to
+their <a href="https://github.com/cypriss/mutations/wiki/Filtering-Input">wiki</a> to find out how to use their DSL.</p>
+
+<p>Response representations are defined as <a href="https://github.com/apotonick/roar">Roar</a> representers. You can check out the
+<a href="https://github.com/apotonick/representable">representable docs</a> to figure out how to customize your responses.</p>
+
+<p>To demo an example API project, checkout <a href="https://github.com/kamui/kanpachi-example">kanpachi-example</a>. If you want to see what the html documentation looks like it's available at <a href="http://kamui.github.io/kanpachi-example">http://kamui.github.io/kanpachi-example</a>.</p>
+
+<p>This project was inspired by <a href="https://github.com/mattetti/">@mattetti</a>'s <a href="https://github.com/mattetti/Weasel-Diesel">Weasel-Diesel</a> project, of which I am also a contributor. I created Kanpachi as a way of experimenting and leaning how to create a DSL in ruby.</p>
+
+<h2>
+<a name="example" class="anchor" href="#example"><span class="octicon octicon-link"></span></a>Example</h2>
+
+<p>Below is an example of one of Twitter's API endpoints partially described in Kanpachi.</p>
+
+<div class="highlight highlight-ruby"><pre><span class="n">api</span> <span class="s1">'Twitter'</span> <span class="k">do</span>
+  <span class="c1"># API meta data</span>
+  <span class="n">title</span> <span class="s1">'REST API v1.1 Resources'</span>
+  <span class="n">description</span> <span class="s1">'This describes the resources that make up the official Twitter API v1.1'</span>
+  <span class="n">host</span> <span class="s1">'api.twitter.com'</span>
+
+  <span class="c1"># Define global error responses</span>
+  <span class="n">error</span> <span class="ss">:malformed_params</span> <span class="k">do</span>
+    <span class="n">description</span> <span class="s1">'Sending invalid JSON will result in a 400 Bad Request response.'</span>
+
+    <span class="n">response</span> <span class="k">do</span>
+      <span class="n">status</span> <span class="mi">400</span>
+      <span class="n">header</span> <span class="s1">'Content-Type'</span><span class="p">,</span> <span class="s1">'application/json'</span>
+      <span class="n">representation</span> <span class="k">do</span>
+        <span class="n">property</span> <span class="ss">:message</span><span class="p">,</span> <span class="ss">type</span><span class="p">:</span> <span class="nb">String</span>
+      <span class="k">end</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+
+  <span class="n">section</span> <span class="s1">'Timelines'</span> <span class="k">do</span>
+    <span class="n">description</span> <span class="s1">'Timelines are collections of Tweets, ordered with the most recent first.'</span>
+
+    <span class="n">resource</span> <span class="ss">:get</span><span class="p">,</span> <span class="s1">'/statuses/mentions_timeline'</span> <span class="k">do</span>
+      <span class="nb">name</span> <span class="s1">'Mentions timeline'</span>
+      <span class="n">description</span> <span class="o">&lt;&lt;-</span><span class="no">TEXT</span>
+<span class="sh">Returns the 20 most recent mentions (tweets containing a users's @screen_name) for the authenticating user.</span>
+
+<span class="sh">The timeline returned is the equivalent of the one seen when you view [your mentions](https://twitter.com/mentions) on twitter.com.</span>
+
+<span class="sh">This method can only return up to 800 tweets.</span>
+
+<span class="sh">See [__Working with Timelines__](https://dev.twitter.com/docs/working-with-timelines) for instructions on traversing timelines.</span>
+<span class="no">TEXT</span>
+      <span class="n">versions</span> <span class="s1">'1.1'</span><span class="p">,</span> <span class="mi">1</span><span class="o">.</span><span class="mi">0</span>
+      <span class="n">ssl</span> <span class="kp">true</span>
+      <span class="n">formats</span> <span class="ss">:json</span>
+
+      <span class="c1"># Params are a subclass of Mutations::Command</span>
+      <span class="n">params</span> <span class="k">do</span>
+        <span class="n">required</span> <span class="k">do</span>
+        <span class="k">end</span>
+
+        <span class="n">optional</span> <span class="k">do</span>
+          <span class="n">integer</span> <span class="ss">:count</span><span class="p">,</span> <span class="ss">doc</span><span class="p">:</span> <span class="s1">'Specifies the number of tweets to try and retrieve, up to a maximum of 200. The value of count is best thought of as a limit to the number of tweets to return because suspended or deleted content is removed after the count has been applied. We include retweets in the count, even if `include_rts` is not supplied. It is recommended you always send `include_rts=1` when using this API method.'</span>
+          <span class="n">integer</span> <span class="ss">:since_id</span><span class="p">,</span> <span class="ss">doc</span><span class="p">:</span> <span class="s1">'Returns results with an ID greater than (that is, more recent than) the specified ID. There are limits to the number of Tweets which can be accessed through the API. If the limit of Tweets has occured since the since_id, the since_id will be forced to the oldest ID available.'</span><span class="p">,</span> <span class="ss">example</span><span class="p">:</span> <span class="mi">12345</span>
+          <span class="n">integer</span> <span class="ss">:max_id</span><span class="p">,</span> <span class="ss">doc</span><span class="p">:</span> <span class="s1">'Returns results with an ID less than (that is, older than) or equal to the specified ID.'</span><span class="p">,</span> <span class="ss">example</span><span class="p">:</span> <span class="mi">54321</span>
+          <span class="n">boolean</span> <span class="ss">:trim_user</span><span class="p">,</span> <span class="ss">doc</span><span class="p">:</span> <span class="s1">'When set to either true, t or 1, each tweet returned in a timeline will include a user object including only the status authors numerical ID. Omit this parameter to receive the complete user object.'</span><span class="p">,</span> <span class="ss">example</span><span class="p">:</span> <span class="kp">true</span>
+          <span class="n">boolean</span> <span class="ss">:contributor_details</span><span class="p">,</span> <span class="ss">doc</span><span class="p">:</span> <span class="s1">'This parameter enhances the contributors element of the status response to include the screen_name of the contributor. By default only the user_id of the contributor is included.'</span><span class="p">,</span> <span class="ss">example</span><span class="p">:</span> <span class="kp">true</span>
+          <span class="n">boolean</span> <span class="ss">:include_entities</span><span class="p">,</span> <span class="ss">doc</span><span class="p">:</span> <span class="s1">'The `entities` node will be disincluded when set to false.'</span><span class="p">,</span> <span class="ss">example</span><span class="p">:</span> <span class="kp">false</span>
+        <span class="k">end</span>
+      <span class="k">end</span>
+
+      <span class="c1"># Multiple responses are supported</span>
+      <span class="n">response</span> <span class="ss">:default</span> <span class="k">do</span>
+        <span class="n">status</span> <span class="mi">200</span>
+        <span class="n">header</span> <span class="s1">'Content-Type'</span><span class="p">,</span> <span class="s1">'application/json'</span>
+
+        <span class="c1"># Response representations include Roar::Representer</span>
+        <span class="n">representation</span> <span class="k">do</span>
+          <span class="kp">include</span> <span class="o">::</span><span class="ss">Representable</span><span class="p">:</span><span class="ss">:JSON</span><span class="o">::</span><span class="no">Collection</span>
+          <span class="n">property</span> <span class="ss">:title</span><span class="p">,</span> <span class="ss">type</span><span class="p">:</span> <span class="nb">String</span><span class="p">,</span> <span class="ss">doc</span><span class="p">:</span> <span class="s2">"it's the title"</span><span class="p">,</span> <span class="ss">example</span><span class="p">:</span> <span class="s1">'The Title'</span>
+          <span class="n">collection</span> <span class="ss">:coordinates</span><span class="p">,</span> <span class="ss">doc</span><span class="p">:</span> <span class="s2">"it's the coordinates"</span><span class="p">,</span> <span class="ss">example</span><span class="p">:</span> <span class="o">[</span><span class="mi">100</span><span class="o">.</span><span class="mi">4</span><span class="p">,</span> <span class="mi">45</span><span class="o">.</span><span class="mi">1</span><span class="o">]</span>
+        <span class="k">end</span>
+      <span class="k">end</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+
+<h2>
+<a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h2>
+
+<p>Add this line to your application's Gemfile:</p>
+
+<pre><code>gem 'kanpachi'
 </code></pre>
 
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
+<p>And then execute:</p>
 
-<h3>
-<a name="designer-templates" class="anchor" href="#designer-templates"><span class="octicon octicon-link"></span></a>Designer Templates</h3>
+<pre><code>$ bundle
+</code></pre>
 
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
+<p>Or install it yourself as:</p>
 
-<h3>
-<a name="rather-drive-stick" class="anchor" href="#rather-drive-stick"><span class="octicon octicon-link"></span></a>Rather Drive Stick?</h3>
+<pre><code>$ gem install kanpachi
+</code></pre>
 
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
+<h2>
+<a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h2>
 
-<h3>
-<a name="authors-and-contributors" class="anchor" href="#authors-and-contributors"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
+<p>Create a new API</p>
 
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
+<div class="highlight highlight-bash"><pre><span class="nv">$ </span>kanpachi new my_api
+<span class="nv">$ </span><span class="nb">cd </span>my_api
+</pre></div>
 
-<h3>
-<a name="support-or-contact" class="anchor" href="#support-or-contact"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
+<p>Build HTML documentation</p>
 
-<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
+<div class="highlight highlight-bash"><pre><span class="nv">$ </span>kanpachi build
+</pre></div>
+
+<p>Start a documentation server</p>
+
+<div class="highlight highlight-bash"><pre><span class="nv">$ </span>kanpachi server
+</pre></div>
+
+<h2>
+<a name="contributing" class="anchor" href="#contributing"><span class="octicon octicon-link"></span></a>Contributing</h2>
+
+<ol>
+<li>Fork it</li>
+<li>Create your feature branch (<code>git checkout -b my-new-feature</code>)</li>
+<li>Commit your changes (<code>git commit -am 'Add some feature'</code>)</li>
+<li>Push to the branch (<code>git push origin my-new-feature</code>)</li>
+<li>Create new Pull Request</li>
+</ol>
       </section>
 
     </div>
