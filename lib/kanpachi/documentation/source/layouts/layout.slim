@@ -27,7 +27,7 @@ html
         .navbar-collapse.collapse
           ul.nav.navbar-nav
             li.active
-              = link_to 'Home', '/'
+              = link_to 'Home', '/index.html'
             li.dropdown
               a.dropdown-toggle data-toggle="dropdown" href="#"
                 | Sections
@@ -35,14 +35,14 @@ html
               ul.dropdown-menu
                 - api.sections.to_hash.keys.each do |section|
                   li
-                    = link_to section, "/##{section.downcase}"
+                    = link_to section, "/index.html##{section.downcase}"
 
                 li
-                  = link_to 'Errors', '/errors'
+                  = link_to 'Errors', '/errors/index.html'
             li
-              = link_to 'About', '/#about'
+              = link_to 'About', '/index.html#about'
             li
-              = link_to 'Contact', '/#contact'
+              = link_to 'Contact', '/index.html#contact'
         /! /.navbar-collapse
     = yield
     hr
