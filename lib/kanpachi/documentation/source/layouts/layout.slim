@@ -8,13 +8,13 @@ html
     link href="/favicon.png" rel="shortcut icon"
     title= "#{api.title} - #{api.name}"
     /! Bootstrap core CSS
-    link href="/stylesheets/bootstrap.css" rel="stylesheet"
+    = stylesheet_link_tag "bootstrap.css"
     /! Custom styles for this template
-    link href="/stylesheets/jumbotron.css" rel="stylesheet"
+    = stylesheet_link_tag "jumbotron.css"
     /! HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries
-    /![if lt IE 9]
-      script src="/javascripts/html5shiv.js"
-      script src="/javascripts/respond.min.js"
+    /[if lt IE 9]
+      = javascript_include_tag "html5shiv.js"
+      = javascript_include_tag "respond.min.js"
   body
     .navbar.navbar-inverse.navbar-fixed-top
       .container
@@ -27,7 +27,7 @@ html
         .navbar-collapse.collapse
           ul.nav.navbar-nav
             li.active
-              a href="/" Home
+              = link_to 'Home', '/'
             li.dropdown
               a.dropdown-toggle data-toggle="dropdown" href="#"
                 | Sections
@@ -35,14 +35,14 @@ html
               ul.dropdown-menu
                 - api.sections.to_hash.keys.each do |section|
                   li
-                    a href="/##{section.downcase}" #{section}
+                    = link_to section, "/##{section.downcase}"
 
                 li
-                  a href='/errors' Errors
+                  = link_to 'Errors', '/errors'
             li
-              a href="#about" About
+              = link_to 'About', '/#about'
             li
-              a href="#contact" Contact
+              = link_to 'Contact', '/#contact'
         /! /.navbar-collapse
     = yield
     hr
@@ -54,5 +54,5 @@ html
     /! Bootstrap core JavaScript
     /! ==================================================
     /! Placed at the end of the document so the pages load faster
-    script src="/javascripts/jquery-1.10.2.min.js"
-    script src="/javascripts/bootstrap.min.js"
+    = javascript_include_tag "jquery-1.10.2.min.js"
+    = javascript_include_tag "bootstrap.min.js"

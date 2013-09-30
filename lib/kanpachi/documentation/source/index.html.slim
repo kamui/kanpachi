@@ -20,6 +20,6 @@
                 - resource = api.resources.find(*route)
                 tr
                   td
-                    a href="#{resource.http_verb}#{resource.url}" #{resource.route}
+                    = link_to resource.route, "#{resource.http_verb}#{resource.url.gsub(/[.:]/, '_')}"
                   td= Kanpachi::Markdown.to_html(resource.description)
       hr
