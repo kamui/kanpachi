@@ -11,7 +11,7 @@ their [wiki](https://github.com/cypriss/mutations/wiki/Filtering-Input) to find 
 Response representations are defined as [Roar](https://github.com/apotonick/roar) representers. You can check out the
 [representable docs](https://github.com/apotonick/representable) to figure out how to customize your responses.
 
-To check out an example API project, checkout [kanpachi-example](https://github.com/kamui/kanpachi-example).
+To demo an example API project, checkout [kanpachi-example](https://github.com/kamui/kanpachi-example). If you want to see what the html documentation looks like it's available at <http://kamui.github.io/kanpachi-example>.
 
 This project was inspired by [@mattetti](https://github.com/mattetti/)'s [Weasel-Diesel](https://github.com/mattetti/Weasel-Diesel) project, of which I am also a contributor. I created Kanpachi as a way of experimenting and leaning how to create a DSL in ruby.
 
