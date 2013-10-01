@@ -37,12 +37,12 @@ html
                   li
                     = link_to section, "/index.html##{section.downcase}"
 
-                li
-                  = link_to 'Errors', '/errors/index.html'
             li
-              = link_to 'About', '/index.html#about'
-            li
-              = link_to 'Contact', '/index.html#contact'
+              = link_to 'Errors', '/errors/index.html'
+            / li
+            /   = link_to 'About', '/index.html#about'
+            / li
+            /   = link_to 'Contact', '/index.html#contact'
         /! /.navbar-collapse
     = yield
     hr
