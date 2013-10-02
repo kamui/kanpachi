@@ -53,7 +53,7 @@ This method can only return up to 800 tweets.
 
 See [__Working with Timelines__](https://dev.twitter.com/docs/working-with-timelines) for instructions on traversing timelines.
 TEXT
-      versions '1.1', 1.0
+      versions '1.1'
       ssl true
       formats :json
 
