@@ -86,13 +86,16 @@ their <a href="https://github.com/cypriss/mutations/wiki/Filtering-Input">wiki</
     <span class="n">resource</span> <span class="ss">:get</span><span class="p">,</span> <span class="s1">'/statuses/mentions_timeline'</span> <span class="k">do</span>
       <span class="nb">name</span> <span class="s1">'Mentions timeline'</span>
       <span class="n">description</span> <span class="o">&lt;&lt;-</span><span class="no">TEXT</span>
-<span class="sh">Returns the 20 most recent mentions (tweets containing a users's @screen_name) for the authenticating user.</span>
+<span class="sh">Returns the 20 most recent mentions (tweets containing a users's @screen_name) for</span>
+<span class="sh">the authenticating user.</span>
 
-<span class="sh">The timeline returned is the equivalent of the one seen when you view [your mentions](https://twitter.com/mentions) on twitter.com.</span>
+<span class="sh">The timeline returned is the equivalent of the one seen when you view</span>
+<span class="sh">[your mentions](https://twitter.com/mentions) on twitter.com.</span>
 
 <span class="sh">This method can only return up to 800 tweets.</span>
 
-<span class="sh">See [__Working with Timelines__](https://dev.twitter.com/docs/working-with-timelines) for instructions on traversing timelines.</span>
+<span class="sh">See [__Working with Timelines__](https://dev.twitter.com/docs/working-with-timelines)</span>
+<span class="sh">for instructions on traversing timelines.</span>
 <span class="no">TEXT</span>
       <span class="n">versions</span> <span class="s1">'1.1'</span>
       <span class="n">ssl</span> <span class="kp">true</span>
@@ -104,12 +107,37 @@ their <a href="https://github.com/cypriss/mutations/wiki/Filtering-Input">wiki</
         <span class="k">end</span>
 
         <span class="n">optional</span> <span class="k">do</span>
-          <span class="n">integer</span> <span class="ss">:count</span><span class="p">,</span> <span class="ss">doc</span><span class="p">:</span> <span class="s1">'Specifies the number of tweets to try and retrieve, up to a maximum of 200. The value of count is best thought of as a limit to the number of tweets to return because suspended or deleted content is removed after the count has been applied. We include retweets in the count, even if `include_rts` is not supplied. It is recommended you always send `include_rts=1` when using this API method.'</span>
-          <span class="n">integer</span> <span class="ss">:since_id</span><span class="p">,</span> <span class="ss">doc</span><span class="p">:</span> <span class="s1">'Returns results with an ID greater than (that is, more recent than) the specified ID. There are limits to the number of Tweets which can be accessed through the API. If the limit of Tweets has occured since the since_id, the since_id will be forced to the oldest ID available.'</span><span class="p">,</span> <span class="ss">example</span><span class="p">:</span> <span class="mi">12345</span>
-          <span class="n">integer</span> <span class="ss">:max_id</span><span class="p">,</span> <span class="ss">doc</span><span class="p">:</span> <span class="s1">'Returns results with an ID less than (that is, older than) or equal to the specified ID.'</span><span class="p">,</span> <span class="ss">example</span><span class="p">:</span> <span class="mi">54321</span>
-          <span class="n">boolean</span> <span class="ss">:trim_user</span><span class="p">,</span> <span class="ss">doc</span><span class="p">:</span> <span class="s1">'When set to either true, t or 1, each tweet returned in a timeline will include a user object including only the status authors numerical ID. Omit this parameter to receive the complete user object.'</span><span class="p">,</span> <span class="ss">example</span><span class="p">:</span> <span class="kp">true</span>
-          <span class="n">boolean</span> <span class="ss">:contributor_details</span><span class="p">,</span> <span class="ss">doc</span><span class="p">:</span> <span class="s1">'This parameter enhances the contributors element of the status response to include the screen_name of the contributor. By default only the user_id of the contributor is included.'</span><span class="p">,</span> <span class="ss">example</span><span class="p">:</span> <span class="kp">true</span>
-          <span class="n">boolean</span> <span class="ss">:include_entities</span><span class="p">,</span> <span class="ss">doc</span><span class="p">:</span> <span class="s1">'The `entities` node will be disincluded when set to false.'</span><span class="p">,</span> <span class="ss">example</span><span class="p">:</span> <span class="kp">false</span>
+          <span class="n">integer</span> <span class="ss">:count</span><span class="p">,</span>
+            <span class="ss">doc</span><span class="p">:</span> <span class="s1">'Specifies the number of tweets to try and retrieve, up to a</span>
+<span class="s1">              maximum of 200. The value of count is best thought of as a limit to</span>
+<span class="s1">              the number of tweets to return because suspended or deleted content</span>
+<span class="s1">              is removed after the count has been applied. We include retweets in</span>
+<span class="s1">              the count, even if `include_rts` is not supplied. It is recommended</span>
+<span class="s1">              you always send `include_rts=1` when using this API method.'</span>
+          <span class="n">integer</span> <span class="ss">:since_id</span><span class="p">,</span>
+            <span class="ss">doc</span><span class="p">:</span> <span class="s1">'Returns results with an ID greater than (that is, more recent</span>
+<span class="s1">              than) the specified ID. There are limits to the number of Tweets</span>
+<span class="s1">              which can be accessed through the API. If the limit of Tweets has</span>
+<span class="s1">              occured since the since_id, the since_id will be forced to the</span>
+<span class="s1">              oldest ID available.'</span><span class="p">,</span>
+            <span class="ss">example</span><span class="p">:</span> <span class="mi">12345</span>
+          <span class="n">integer</span> <span class="ss">:max_id</span><span class="p">,</span>
+            <span class="ss">doc</span><span class="p">:</span> <span class="s1">'Returns results with an ID less than (that is, older than) or</span>
+<span class="s1">              equal to the specified ID.'</span><span class="p">,</span>
+            <span class="ss">example</span><span class="p">:</span> <span class="mi">54321</span>
+          <span class="n">boolean</span> <span class="ss">:trim_user</span><span class="p">,</span>
+            <span class="ss">doc</span><span class="p">:</span> <span class="s1">'When set to either true, t or 1, each tweet returned in a timeline</span>
+<span class="s1">              will include a user object including only the status authors numerical</span>
+<span class="s1">              ID. Omit this parameter to receive the complete user object.'</span><span class="p">,</span>
+            <span class="ss">example</span><span class="p">:</span> <span class="kp">true</span>
+          <span class="n">boolean</span> <span class="ss">:contributor_details</span><span class="p">,</span>
+            <span class="ss">doc</span><span class="p">:</span> <span class="s1">'This parameter enhances the contributors element of the status</span>
+<span class="s1">              response to include the screen_name of the contributor. By default</span>
+<span class="s1">              only the user_id of the contributor is included.'</span><span class="p">,</span>
+            <span class="ss">example</span><span class="p">:</span> <span class="kp">true</span>
+          <span class="n">boolean</span> <span class="ss">:include_entities</span><span class="p">,</span>
+            <span class="ss">doc</span><span class="p">:</span> <span class="s1">'The `entities` node will be disincluded when set to false.'</span><span class="p">,</span>
+            <span class="ss">example</span><span class="p">:</span> <span class="kp">false</span>
         <span class="k">end</span>
       <span class="k">end</span>
 
@@ -121,8 +149,13 @@ their <a href="https://github.com/cypriss/mutations/wiki/Filtering-Input">wiki</
         <span class="c1"># Response representations include Roar::Representer</span>
         <span class="n">representation</span> <span class="k">do</span>
           <span class="kp">include</span> <span class="o">::</span><span class="ss">Representable</span><span class="p">:</span><span class="ss">:JSON</span><span class="o">::</span><span class="no">Collection</span>
-          <span class="n">property</span> <span class="ss">:title</span><span class="p">,</span> <span class="ss">type</span><span class="p">:</span> <span class="nb">String</span><span class="p">,</span> <span class="ss">doc</span><span class="p">:</span> <span class="s2">"it's the title"</span><span class="p">,</span> <span class="ss">example</span><span class="p">:</span> <span class="s1">'The Title'</span>
-          <span class="n">collection</span> <span class="ss">:coordinates</span><span class="p">,</span> <span class="ss">doc</span><span class="p">:</span> <span class="s2">"it's the coordinates"</span><span class="p">,</span> <span class="ss">example</span><span class="p">:</span> <span class="o">[</span><span class="mi">100</span><span class="o">.</span><span class="mi">4</span><span class="p">,</span> <span class="mi">45</span><span class="o">.</span><span class="mi">1</span><span class="o">]</span>
+          <span class="n">property</span> <span class="ss">:title</span><span class="p">,</span>
+            <span class="ss">type</span><span class="p">:</span> <span class="nb">String</span><span class="p">,</span>
+            <span class="ss">doc</span><span class="p">:</span> <span class="s1">'The title'</span><span class="p">,</span>
+            <span class="ss">example</span><span class="p">:</span> <span class="s1">'The Title'</span>
+          <span class="n">collection</span> <span class="ss">:coordinates</span><span class="p">,</span>
+            <span class="ss">doc</span><span class="p">:</span> <span class="s1">'The coordinates'</span><span class="p">,</span>
+            <span class="ss">example</span><span class="p">:</span> <span class="o">[</span><span class="mi">100</span><span class="o">.</span><span class="mi">4</span><span class="p">,</span> <span class="mi">45</span><span class="o">.</span><span class="mi">1</span><span class="o">]</span>
         <span class="k">end</span>
       <span class="k">end</span>
     <span class="k">end</span>
