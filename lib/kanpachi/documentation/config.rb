@@ -49,9 +49,6 @@ end
 # Automatic image dimensions on image_tag helper
 # activate :automatic_image_sizes
 
-# Reload the browser automatically whenever files change
-activate :livereload
-
 # Pretty URLs
 activate :directory_indexes
 
@@ -68,20 +65,31 @@ set :js_dir, 'javascripts'
 
 set :images_dir, 'images'
 
-# Build-specific configuration
-configure :build do
-  # For example, change the Compass output style for deployment
-  activate :minify_css
+project_config_file = File.join(Dir.pwd, 'documentation', 'config.rb')
+if File.exist?(project_config_file)
+  self.instance_eval File.read(project_config_file)
+  puts 'Loaded documentation/config.rb'
+else
+  puts 'No documentation/config.rb file found'
 
-  # Minify Javascript on build
-  activate :minify_javascript
+  # Reload the browser automatically whenever files change
+  activate :livereload
 
-  # Enable cache buster
-  activate :asset_hash
+  # Build-specific configuration
+  configure :build do
+    # For example, change the Compass output style for deployment
+    activate :minify_css
 
-  # Use relative URLs
-  # activate :relative_assets
+    # Minify Javascript on build
+    activate :minify_javascript
 
-  # Or use a different image path
-  # set :http_prefix, "/Content/images/"
+    # Enable cache buster
+    activate :asset_hash
+
+    # Use relative URLs
+    # activate :relative_assets
+
+    # Or use a different image path
+    # set :http_prefix, "/Content/images/"
+  end
 end
