@@ -64,7 +64,8 @@ their <a href="https://github.com/cypriss/mutations/wiki/Filtering-Input">wiki</
 <div class="highlight highlight-ruby"><pre><span class="n">api</span> <span class="s1">'Twitter'</span> <span class="k">do</span>
   <span class="c1"># API meta data</span>
   <span class="n">title</span> <span class="s1">'REST API v1.1 Resources'</span>
-  <span class="n">description</span> <span class="s1">'This describes the resources that make up the official Twitter API v1.1'</span>
+  <span class="n">description</span> <span class="s1">'This describes the resources that make up the official Twitter</span>
+<span class="s1">API v1.1'</span>
   <span class="n">host</span> <span class="s1">'api.twitter.com'</span>
 
   <span class="c1"># Define global error responses</span>
@@ -81,7 +82,8 @@ their <a href="https://github.com/cypriss/mutations/wiki/Filtering-Input">wiki</
   <span class="k">end</span>
 
   <span class="n">section</span> <span class="s1">'Timelines'</span> <span class="k">do</span>
-    <span class="n">description</span> <span class="s1">'Timelines are collections of Tweets, ordered with the most recent first.'</span>
+    <span class="n">description</span> <span class="s1">'Timelines are collections of Tweets, ordered with the most</span>
+<span class="s1">recent first.'</span>
 
     <span class="n">resource</span> <span class="ss">:get</span><span class="p">,</span> <span class="s1">'/statuses/mentions_timeline'</span> <span class="k">do</span>
       <span class="nb">name</span> <span class="s1">'Mentions timeline'</span>
@@ -126,9 +128,10 @@ their <a href="https://github.com/cypriss/mutations/wiki/Filtering-Input">wiki</
 <span class="s1">              equal to the specified ID.'</span><span class="p">,</span>
             <span class="ss">example</span><span class="p">:</span> <span class="mi">54321</span>
           <span class="n">boolean</span> <span class="ss">:trim_user</span><span class="p">,</span>
-            <span class="ss">doc</span><span class="p">:</span> <span class="s1">'When set to either true, t or 1, each tweet returned in a timeline</span>
-<span class="s1">              will include a user object including only the status authors numerical</span>
-<span class="s1">              ID. Omit this parameter to receive the complete user object.'</span><span class="p">,</span>
+            <span class="ss">doc</span><span class="p">:</span> <span class="s1">'When set to either true, t or 1, each tweet returned in a</span>
+<span class="s1">              timeline will include a user object including only the status</span>
+<span class="s1">              authors numerical ID. Omit this parameter to receive the complete</span>
+<span class="s1">              user object.'</span><span class="p">,</span>
             <span class="ss">example</span><span class="p">:</span> <span class="kp">true</span>
           <span class="n">boolean</span> <span class="ss">:contributor_details</span><span class="p">,</span>
             <span class="ss">doc</span><span class="p">:</span> <span class="s1">'This parameter enhances the contributors element of the status</span>
