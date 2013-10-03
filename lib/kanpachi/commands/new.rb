@@ -10,7 +10,7 @@ module Kanpachi
       class_option :test_framework, default: :minitest
 
       def self.source_root
-        File.expand_path(File.join('..', 'templates'), File.dirname(__FILE__))
+        File.expand_path(File.join('..', '..', '..', 'templates'), File.dirname(__FILE__))
       end
 
       def create_app

@@ -23,7 +23,8 @@ Below is an example of one of Twitter's API endpoints partially described in Kan
 api 'Twitter' do
   # API meta data
   title 'REST API v1.1 Resources'
-  description 'This describes the resources that make up the official Twitter API v1.1'
+  description 'This describes the resources that make up the official Twitter
+API v1.1'
   host 'api.twitter.com'
 
   # Define global error responses
@@ -40,7 +41,8 @@ api 'Twitter' do
   end
 
   section 'Timelines' do
-    description 'Timelines are collections of Tweets, ordered with the most recent first.'
+    description 'Timelines are collections of Tweets, ordered with the most
+recent first.'
 
     resource :get, '/statuses/mentions_timeline' do
       name 'Mentions timeline'
@@ -85,9 +87,10 @@ TEXT
               equal to the specified ID.',
             example: 54321
           boolean :trim_user,
-            doc: 'When set to either true, t or 1, each tweet returned in a timeline
-              will include a user object including only the status authors numerical
-              ID. Omit this parameter to receive the complete user object.',
+            doc: 'When set to either true, t or 1, each tweet returned in a
+              timeline will include a user object including only the status
+              authors numerical ID. Omit this parameter to receive the complete
+              user object.',
             example: true
           boolean :contributor_details,
             doc: 'This parameter enhances the contributors element of the status
