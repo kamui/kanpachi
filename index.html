@@ -124,6 +124,25 @@ their <a href="https://github.com/cypriss/mutations/wiki/Filtering-Input">wiki</
             <span class="ss">example</span><span class="p">:</span> <span class="kp">false</span>
         <span class="k">end</span>
       <span class="k">end</span>
+
+      <span class="c1"># Multiple responses are supported</span>
+      <span class="n">response</span> <span class="ss">:default</span> <span class="k">do</span>
+        <span class="n">status</span> <span class="mi">200</span>
+        <span class="n">header</span> <span class="s1">'Content-Type'</span><span class="p">,</span> <span class="s1">'application/json'</span>
+
+        <span class="c1"># Response representations include Roar::Representer</span>
+        <span class="n">representation</span> <span class="k">do</span>
+          <span class="kp">include</span> <span class="o">::</span><span class="ss">Representable</span><span class="p">:</span><span class="ss">:JSON</span><span class="o">::</span><span class="no">Collection</span>
+
+          <span class="n">property</span> <span class="ss">:title</span><span class="p">,</span>
+            <span class="ss">type</span><span class="p">:</span> <span class="nb">String</span><span class="p">,</span>
+            <span class="ss">doc</span><span class="p">:</span> <span class="s1">'The title'</span><span class="p">,</span>
+            <span class="ss">example</span><span class="p">:</span> <span class="s1">'The Title'</span>
+          <span class="n">collection</span> <span class="ss">:coordinates</span><span class="p">,</span>
+            <span class="ss">doc</span><span class="p">:</span> <span class="s1">'The coordinates'</span><span class="p">,</span>
+            <span class="ss">example</span><span class="p">:</span> <span class="o">[</span><span class="mi">100</span><span class="o">.</span><span class="mi">4</span><span class="p">,</span> <span class="mi">45</span><span class="o">.</span><span class="mi">1</span><span class="o">]</span>
+        <span class="k">end</span>
+      <span class="k">end</span>
     <span class="k">end</span>
   <span class="k">end</span>
 <span class="k">end</span>
