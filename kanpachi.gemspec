@@ -19,24 +19,23 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_dependency 'thor'
-  spec.add_dependency 'slim'
   spec.add_dependency 'roar'
   spec.add_dependency 'representable'
   spec.add_dependency 'mutations'
-  spec.add_dependency 'virtus', '>= 1.0.0.beta7'
+  spec.add_dependency 'virtus', '~> 1.0.0rc2'
   spec.add_dependency 'coercible'
   spec.add_dependency 'kramdown'
   spec.add_dependency 'inflecto'
-  spec.add_dependency 'middleman', '>= 3.1.5'
-  spec.add_dependency 'slim', '>= 1.3.6'
+  spec.add_dependency 'middleman', '~> 3.1.5'
+  spec.add_dependency 'slim', '~> 1.3.9'
 
   # Live-reloading plugin
-  spec.add_dependency 'middleman-livereload', '>= 3.1.0'
+  spec.add_dependency 'middleman-livereload', '~> 3.1.0'
 
   spec.add_development_dependency 'bundler'
   spec.add_development_dependency 'rake'
-  spec.add_development_dependency 'minitest'
-  spec.add_development_dependency 'guard', '>= 2.0.0.beta.3'
+  spec.add_development_dependency 'minitest', '~> 5.0.0'
+  spec.add_development_dependency 'guard'
   spec.add_development_dependency 'guard-minitest'
 
   # For faster file watcher updates on Windows:
