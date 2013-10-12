@@ -1,5 +1,5 @@
-require 'roar/representer'
-require 'roar/representer/feature/hypermedia'
+require 'roar/representer/json'
+require 'roar/decorator'
 require 'representable/json/collection'
 require 'representable/json/hash'
 
@@ -14,14 +14,14 @@ module Kanpachi
       @name = name
       @status = 200
       @headers = {}
-      @representation = Module.new { include Representation }
+      @representation = Class.new(Roar::Decorator) { include Representation }
     end
 
     module Representation
       def self.included(base)
         base.class_eval do
-          include Roar::Representer
-          include Roar::Representer::Feature::Hypermedia
+          include Roar::Representer::JSON
+          include Roar::Decorator::HypermediaConsumer
 
           def self.example
             example = Hash.new

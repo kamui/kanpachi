@@ -27,9 +27,10 @@ describe Kanpachi::Response do
     subject.representation.must_equal representation
   end
 
-  it 'representation is a Roar representer' do
-    subject.representation.ancestors.must_include Roar::Representer
-    subject.representation.ancestors.must_include Roar::Representer::Feature::Hypermedia
+  it 'representation is a Roar decorator' do
+    subject.representation.superclass.must_equal Roar::Decorator
+    subject.representation.ancestors.must_include Roar::Representer::JSON
+    subject.representation.ancestors.must_include Roar::Decorator::HypermediaConsumer
   end
 
   it 'representation returns properties' do

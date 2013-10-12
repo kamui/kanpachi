@@ -108,12 +108,12 @@ describe 'Integration Spec' do
       u = user.new
       u.first_name = "Jack"
       u.last_name = "Chu"
-      rep = repo.new.extend(r.responses.all.first.representation)
+      rep = repo.new
       rep.title = "Hi"
       rep.id = ""
       rep.users = []
       rep.users << u
-      puts rep.to_json
+      puts r.responses.all.first.representation.new(rep).to_json
 
       puts rep
       puts r.url
