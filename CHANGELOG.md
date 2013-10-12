@@ -1,5 +1,10 @@
 # Kanpachi Changelog
 
+## 0.0.3
+* Wrap documentation footer in a container class to pad copyright
+* Switch response roar representer to decorator. Prefer decorating objects
+rather than mutating them with `#extend`.
+
 ## 0.0.2
 
 * Add error codes and responses documentation page.
