@@ -23,6 +23,10 @@ module Kanpachi
           include Roar::Representer::JSON
           include Roar::Decorator::HypermediaConsumer
 
+          def self.property(name, options={})
+            super(name, options.merge!(render_nil: true))
+          end
+
           def self.example
             example = Hash.new
             self.properties.each do |key, value|
