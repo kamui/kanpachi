@@ -1,5 +1,11 @@
 # Kanpachi Changelog
 
+## 0.0.4
+* Add support for middleman-deploy extension, just add middleman-deploy to your
+Gemfile and then activate it in your doc/config.rb
+* Move documentation directory to doc and move doc template into doc/template
+* Default render_nils to true in all roar representers
+
 ## 0.0.3
 * Wrap documentation footer in a container class to pad copyright
 * Switch response roar representer to decorator. Prefer decorating objects
