@@ -5,6 +5,10 @@ require 'middleman-core/profiling'
 require 'kanpachi'
 require 'kanpachi/commands/new'
 
+# doc template requires these gems
+require 'inflecto'
+require 'json'
+
 ENV['MM_ROOT'] = File.join(File.expand_path(File.dirname(__FILE__)), 'doc', 'template')
 
 class Middleman::Cli::Server
