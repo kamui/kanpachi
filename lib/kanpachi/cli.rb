@@ -28,3 +28,5 @@ module Kanpachi
     register ::Middleman::Cli::Build, 'build', task.usage, task.description, task.options
   end
 end
+
+require 'kanpachi/doc/middleman-ext/middleman-deploy'
