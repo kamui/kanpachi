@@ -5,7 +5,10 @@ require 'kanpachi'
 
 begin
   require 'middleman-deploy'
+rescue LoadError
+end
 
+if defined? Middleman::Cli::Deploy
   class Middleman::Cli::Deploy
     default_task :deploy
   end
@@ -16,6 +19,4 @@ begin
       register ::Middleman::Cli::Deploy, 'deploy', task.usage, task.description, task.options
     end
   end
-rescue LoadError
 end
-
