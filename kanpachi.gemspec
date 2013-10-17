@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Jack Chu"]
   spec.email         = ["kamuigt@gmail.com"]
   spec.summary       = %q{DSL for describing Web APIs and generating documentation}
-  spec.description   = %q{Kanpachi is a ruby gem that provides a DSL to describe your web API, generate documentation, and will even eventually help you implement it.}
+  spec.description   = %q{Provides a DSL to describe your web API, generate documentation, and will eventually help you implement it.}
   spec.homepage      = "https://github.com/kamui/kanpachi"
   spec.license       = "MIT"
 
