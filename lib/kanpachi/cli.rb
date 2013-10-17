@@ -1,13 +1,11 @@
 require 'thor'
-require 'inflecto'
-require 'json'
 require 'middleman-core'
 require 'middleman-core/cli'
 require 'middleman-core/profiling'
-require_relative '../kanpachi'
-require_relative 'commands/new'
+require 'kanpachi'
+require 'kanpachi/commands/new'
 
-ENV['MM_ROOT'] = File.join(File.expand_path(File.dirname(__FILE__)), 'documentation')
+ENV['MM_ROOT'] = File.join(File.expand_path(File.dirname(__FILE__)), 'doc', 'template')
 
 class Middleman::Cli::Server
   default_task :server
