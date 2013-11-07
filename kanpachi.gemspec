@@ -26,7 +26,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'coercible'
   spec.add_dependency 'kramdown'
   spec.add_dependency 'inflecto'
-  spec.add_dependency 'middleman', '~> 3.1.6'
+  spec.add_dependency 'middleman', '~> 3.2.0'
   spec.add_dependency 'slim', '~> 2.0.1'
 
   # Live-reloading plugin
