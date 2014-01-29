@@ -51,7 +51,6 @@ describe Kanpachi::Response do
     representation.properties.keys.must_include 'user'
     representation.properties['id'][:type].must_equal Integer
     representation.properties['people'][:collection].must_equal true
-    representation.properties['people'][:default].must_be_empty
     representation.properties['people']['name'][:type].must_equal String
     representation.properties['people']['email'][:type].must_equal String
   end
