@@ -1,5 +1,8 @@
 # Kanpachi Changelog
 
+## 0.0.5
+* Lock `coercible` gem at `~> 1.0.0`
+
 ## 0.0.4
 * Add support for middleman-deploy extension, just add middleman-deploy to your
 Gemfile and then activate it in your doc/config.rb
