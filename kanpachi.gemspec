@@ -23,7 +23,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'representable'
   spec.add_dependency 'mutations'
   spec.add_dependency 'virtus', '~> 1.0.0'
-  spec.add_dependency 'coercible'
+  spec.add_dependency 'coercible', '~> 1.0.0'
   spec.add_dependency 'kramdown'
   spec.add_dependency 'inflecto'
   spec.add_dependency 'middleman', '~> 3.2.0'
