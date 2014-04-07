@@ -65,6 +65,10 @@ set :js_dir, 'javascripts'
 
 set :images_dir, 'images'
 
+after_configuration do
+  sprockets.append_path File.join(File.expand_path(File.dirname(__FILE__)), 'components')
+end
+
 project_config_file = File.join(Dir.pwd, 'doc', 'config.rb')
 if File.exist?(project_config_file)
   self.instance_eval File.read(project_config_file)

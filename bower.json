@@ -1,0 +1,22 @@
+{
+  "name": "kanpachi",
+  "version": "0.0.5",
+  "homepage": "https://github.com/kamui/kanpachi",
+  "authors": [
+    "Jack Chu <kamuigt@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "lib/kanpachi/doc/template/components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~1.11.0",
+    "html5shiv": "~3.7.0",
+    "respond": "~1.4.2"
+  }
+}
