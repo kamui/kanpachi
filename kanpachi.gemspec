@@ -22,19 +22,19 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'roar'
   spec.add_dependency 'representable'
   spec.add_dependency 'mutations'
-  spec.add_dependency 'virtus', '~> 1.0.0'
-  spec.add_dependency 'coercible', '~> 1.0.0'
+  spec.add_dependency 'virtus'
+  spec.add_dependency 'coercible'
   spec.add_dependency 'kramdown'
   spec.add_dependency 'inflecto'
-  spec.add_dependency 'middleman', '~> 3.2.0'
-  spec.add_dependency 'slim', '~> 2.0.1'
+  spec.add_dependency 'middleman'
+  spec.add_dependency 'slim'
 
   # Live-reloading plugin
-  spec.add_dependency 'middleman-livereload', '~> 3.1.0'
+  spec.add_dependency 'middleman-livereload'
 
   spec.add_development_dependency 'bundler'
   spec.add_development_dependency 'rake'
-  spec.add_development_dependency 'minitest', '~> 5.0.0'
+  spec.add_development_dependency 'minitest'
   spec.add_development_dependency 'guard'
   spec.add_development_dependency 'guard-minitest'
 
