@@ -1,5 +1,9 @@
 # Kanpachi Changelog
 
+## 0.0.7
+* Update html5shiv to 3.7.1
+* Make response compatible with representable 1.8.0
+
 ## 0.0.6
 * Update bootstrap to 3.1.1
 * Use bower to manage third party js libraries
