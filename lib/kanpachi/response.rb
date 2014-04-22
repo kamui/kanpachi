@@ -57,10 +57,10 @@ module Kanpachi
           def self.properties
             hash = Hash.new
             representable_attrs.each do |definition|
-              if definition.options[:extend]
-                hash[definition.name] = definition.options.merge(definition.options[:extend].properties)
+              if definition[:extend]
+                hash[definition.name] = definition.merge(definition[:extend].evaluate(nil).properties)
               else
-                hash[definition.name] = definition.options
+                hash[definition.name] = definition
               end
             end
             hash

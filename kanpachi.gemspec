@@ -20,7 +20,7 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency 'thor'
   spec.add_dependency 'roar'
-  spec.add_dependency 'representable'
+  spec.add_dependency 'representable', '>= 1.8.0'
   spec.add_dependency 'mutations'
   spec.add_dependency 'virtus'
   spec.add_dependency 'coercible'
