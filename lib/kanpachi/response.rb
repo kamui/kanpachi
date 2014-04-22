@@ -31,9 +31,17 @@ module Kanpachi
             example = Hash.new
             self.properties.each do |key, value|
               if value[:hash]
-                example[key] = value[:extend] ? value[:extend].example : (value[:example] || Hash.new)
+                example[key] = if value[:extend]
+                  value[:extend].evaluate(nil).example
+                else
+                  (value[:example] || Hash.new)
+                end
               elsif value[:collection]
-                example[key] = value[:extend] ? [value[:extend].example] : (value[:example] || Array.new)
+                example[key] = if value[:extend]
+                  [value[:extend].evaluate(nil).example]
+                else
+                  (value[:example] || Array.new)
+                end
               elsif value[:type] == Integer
                 example[key] = value[:example] || 1
               elsif value[:type] == String
